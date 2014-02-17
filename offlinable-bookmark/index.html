@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>offlinable-bookmark</title>
+    <link rel="stylesheet" href="css/default.css" />
+</head>
+<body>
+    <h1>offlinable-bookmark</h1>
+    <ul data-bind="foreach:bookmarks">
+        <li>
+            <a data-bind="attr:{href:url},text:title"></a>
+            <span data-bind="text:comment"></span>
+            <span data-bind="text:createDate"></span>
+            <button data-bind="click:$root.removeBookmark($index())">Remove</button>
+        </li>
+    </ul>
+
+
+    <footer>
+        <a href="Scripts/jasmine/SpecRunner.html">test</a>
+    </footer>
+    <script src="Scripts/knockout-3.0.0.js"></script>
+    <script src="Scripts/youbmark/DataContext.js"></script>
+    <script src="Scripts/youbmark/youbmark.js"></script>
+    <script src="Scripts/youbmark/viewmodel.js"></script>
+</body>
+</html>
