@@ -10,7 +10,7 @@
     <script>
         var handler = function (messageEvent) {
             var s = new youbmark.DataContext();
-            s.save(JSON.parse(messageEvent.data))
+            s.save(youbmark.Bookmark.parse(messageEvent.data))
             messageEvent.source.postMessage("compleate", "*");
         };
         window.addEventListener("message", handler);
