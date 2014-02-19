@@ -1,4 +1,4 @@
-﻿(function () {
+javascript:(function () {
     var s = document.createElement("iframe")
     , f = function (a) { window.removeEventListener("message", f); document.body.removeChild(s); };
     s.src = "http://gitnsy.github.io/offlinable-bookmark/receiver.html"; //
