@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>offlinable-bookmark</title>
+    <!--    <link rel="stylesheet" href="css/default.css" />-->
+</head>
+<body>
+    <h1>offlinable-bookmark</h1>
+    <h2>Bookmarks</h2>
+    <ul data-bind="foreach:bookmarks">
+        <li>
+            <a data-bind="attr:{href:url},text:title"></a>
+            <span data-bind="text:comment"></span>
+            <span data-bind="text:createDate"></span>
+            <button data-bind="click: function () { $root.removeBookmark($index())}">Remove</button>
+        </li>
+    </ul>
+    <h2>Add new Bookmark</h2>
+    <form data-bind=" { with:newBookmark,submit:saveBookmark } ">
+        <div><label>url:<input type="text" data-bind="value:url" /></label></div>
+        <label>title:<input type="text" data-bind="value:title" /></label>
+        <label>comment:<input type="text" data-bind="value:comment" /></label>
+        <button type="submit">Add</button>
+    </form>
+    <footer>
+        <a href="Scripts/jasmine/SpecRunner.html">test</a>
+    </footer>
+    <script src="Scripts/knockout-3.0.0.js"></script>
+    <script src="Scripts/youbmark/bookmark.js"></script>
+    <script src="Scripts/youbmark/datacontext.js"></script>
+    <script src="Scripts/youbmark/viewmodel.js"></script>
+    <script>
+        var s = new youbmark.DataContext();
+        if (localStorage.length <= 0) {
+            s.save(new youbmark.Bookmark("Scripts/jasmine/SpecRunner.html",{title:"ThisPageTest",comment:"Sample Bookmark" }))
+            s.save(new youbmark.Bookmark("https://github.com/gitnsy/offlinable-bookmark",{title:"Github Page",comment:"Sample Bookmark" }))
+        }
+        
+        var vm = new youbmark.ViewModel(s);
+        ko.applyBindings(vm);
+    </script>
+</body>
+</html>
