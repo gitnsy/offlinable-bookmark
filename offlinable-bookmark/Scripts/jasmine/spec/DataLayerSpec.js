@@ -10,7 +10,7 @@ describe("DataLayer", function () {
     });
 
     if (localStorage.length > 0) {
-        alert("this test has bug, will clear all your localStorage!\r\nyou has data from localStorage. cancel this test.");
+        alert("this test has bug, will clear your this origin localStorage!\r\nyou has data from localStorage. cancel this test.");
         return 0;
     }
 
