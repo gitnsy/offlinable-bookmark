@@ -8,17 +8,35 @@ var youbmark = youbmark || {};
         /// <summary>Mainpage ViewModel</summary>
         /// <param name="dataContext" type="DataContext">Datasource</param>
 
-        var self = this, data = dataContext;
-        self.data = new youbmark.DataContext(); //for debug
+        var self = this
+        , bm = youbmark.Bookmark
+        , oo = ko.observable
+        //, data = dataContext;
+        , data = dataContext || new youbmark.DataContext(); //for debug
 
-        self.bookmarks = ko.observableArray([new youbmark.Bookmark("sense",{title:"of",comment:"wonder"})]);
-
-        self.putBookmark = function (bookmark) {
-            self.bookmarks.add(bookmark);
-            data.save(bookmark);
+        self.newBookmark = {
+          title:oo()
+         ,url:oo()
+         ,comment:oo()
         };
+
+        self.bookmarks = ko.observableArray(
+            data.getAll()
+             //[new bm("foo", {title:"bar", comment:"po" ,createDate:new Date(1)})
+             //  , new bm("sense", {title:"of", comment:"wonder", createDate: new Date(10) })
+             //  , new bm("dai", {title: "oh", comment: "jou", createDate: new Date(1000) })]
+        );
+        
+        self.saveBookmark = function () {
+            var s = new youbmark.Bookmark(self.newBookmark.url()
+            ,{title:self.newBookmark.title(),comment:self.newBookmark.comment()});
+            
+            self.bookmarks.unshift(s);
+            data.save(s);
+        };
+        
         self.removeBookmark = function (index) {
-            /// <summary>remove bookmark at UI and Datasource</summary>
+            /// <summary>Remove bookmark at UI and Datasource</summary>
             /// <param name="index" type="Int">Index of remove bookmark</param>
 
             data.remove(self.bookmarks.splice(index, 1)[0].url);

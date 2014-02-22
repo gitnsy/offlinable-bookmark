@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="youbmark.appcache" />
+    <Content Include="receiver.html" />
     <Content Include="Scripts\jasmine\lib\jasmine-2.0.0\boot.js" />
     <Content Include="Scripts\jasmine\lib\jasmine-2.0.0\console.js" />
     <Content Include="Scripts\jasmine\lib\jasmine-2.0.0\jasmine-html.js" />
@@ -67,11 +68,11 @@
     <Content Include="Scripts\jasmine\SpecRunner.html" />
     <Content Include="Scripts\jasmine\spec\DataLayerSpec.js" />
     <Content Include="Scripts\youbmark\bookmarklet.js" />
-    <Content Include="Scripts\youbmark\DataContext.js" />
+    <Content Include="Scripts\youbmark\datacontext.js" />
     <Content Include="Scripts\youbmark\viewmodel.js" />
     <Content Include="Scripts\knockout-3.0.0.debug.js" />
     <Content Include="Scripts\knockout-3.0.0.js" />
-    <Content Include="Scripts\youbmark\youbmark.js" />
+    <Content Include="Scripts\youbmark\bookmark.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

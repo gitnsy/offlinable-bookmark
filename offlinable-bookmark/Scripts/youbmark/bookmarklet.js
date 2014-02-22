@@ -1,7 +1,7 @@
-﻿(function () {
+﻿javascript:(function () {
     var s = document.createElement("iframe")
-    , f = function (a) { window.removeEventListener("message", f); console.log(a); document.body.removeChild(s); };
-    s.src = ""; //
+    , f = function (a) { window.removeEventListener("message", f); document.body.removeChild(s); };
+    s.src = "http://gitnsy.github.io/offlinable-bookmark/receiver.html";
     s.style.height = 0;
     s.style.width = 0;
     s.style.opacity = 0;

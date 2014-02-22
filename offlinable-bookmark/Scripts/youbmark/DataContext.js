@@ -4,20 +4,18 @@
     dc = function () { };
     dc.prototype = {
         save: function (bookmark) {
-            bookmark.date = bookmark.date.toJSON();
-            localStorage.setItem(bookmark.url, JSON.stringify(bookmark));
+            localStorage.setItem(bookmark.url, bookmark.toJson());
         }
         , get: function (url) {
-            var a = JSON.parse(localStorage.getItem(url));
-            a.date = Date.parse(a.date);
-            return a;
+            var a = localStorage.getItem(url);
+            return a && youbmark.Bookmark.parse(a);
         }
         , getAll: function () {
             var result = [];
             for (var i = 0; i < localStorage.length; i++) {
-                result.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+                result.push(youbmark.Bookmark.parse(localStorage.getItem(localStorage.key(i))));
             }
-            return result;
+            return result.sort(function(a,b){return a.createDate > b.createDate;});
         }
         , remove: function (url) { localStorage.removeItem(url); }
         , clear: function () { localStorage.clear(); }

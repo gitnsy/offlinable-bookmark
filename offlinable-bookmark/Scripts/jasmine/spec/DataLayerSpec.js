@@ -1,25 +1,18 @@
 describe("DataLayer", function () {
-    function Bookmark(url, title, comment) {
-        this.url = url;
-        this.title = title;
-        this.comment = comment;
-    };
-
-    function desirializeBookmark(json) {
-        var a = JSON.parse(json);
-        a.date = Date.parse(a.date);
-        return a;
-    }
-
     var data = new youbmark.DataContext()
-     , bookmark = [{url:"foo", title:"bar", comment:"po",date:new Date()}
-     , { url: "sense", title: "of", comment: "wonder", date: new Date() }
-     , { url: "dai", title: "oh", comment: "jou", date: new Date() }];
-
-    //setup localStorage
+     , bm = youbmark.Bookmark
+     , bookmark = [new bm("foo", { title: "bar", comment: "po", createDate: new Date(1) })
+               , new bm("sense", { title: "of", comment: "wonder", createDate: new Date(10) })
+               , new bm("dai", { title: "oh", comment: "jou", createDate: new Date(1000) })
+     ];
     bookmark.forEach(function (item) {
         localStorage.removeItem(item.url);
     });
+
+    if (localStorage.length > 0) {
+        alert("this test has bug, will clear all your localStorage!\r\nyou has data from localStorage. cancel this test.");
+        return 0;
+    }
 
     it("Save Bookmark and Get All Bookmark", function () {
         bookmark.forEach(function (item) {
@@ -31,7 +24,7 @@ describe("DataLayer", function () {
 
     it("After save, LocalStorage contains all bookmark", function () {
         bookmark.forEach(function (item) {
-            expect(item).toEqual(desirializeBookmark(data.get(item.url)));
+            expect(item).toEqual(data.get(item.url));
         });
     });
 
@@ -52,7 +45,7 @@ describe("DataLayer", function () {
         expect(localStorage.getItem(bookmark[0].url)).toBeNull();
 
         bookmark.slice(1).forEach(function (item) {
-            expect(item).toEqual(localStorage.getItem(item.url));
+            expect(item).toEqual(bm.parse(localStorage.getItem(item.url)));
         });
     });
 
@@ -66,5 +59,4 @@ describe("DataLayer", function () {
             expect(localStorage.getItem(item.url)).toBeNull();
         });
     });
-
 });
