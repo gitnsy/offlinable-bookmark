@@ -27,10 +27,6 @@
     }
 
     Bookmark.prototype = {
-        /// <summary>JSON to Bookmark</summary>
-        /// <param name="json" type="String">json string</param>
-        /// <returns type="Bookmark">Deserialized Bookmark</returns>
-
         toJson: function () {
             return JSON.stringify(new Bookmark(this.url, { title: this.title, comment: this.comment,createDate:+this.createDate }));
         }

@@ -1,6 +1,6 @@
 ﻿/// <reference path="../knockout-3.0.0.debug.js" />
-/// <reference path="./youbmark.js" />
-/// <reference path="./DataContext.js" />
+/// <reference path="./bookmark.js" />
+/// <reference path="./datacontext.js" />
 
 var youbmark = youbmark || {};
 (function () {

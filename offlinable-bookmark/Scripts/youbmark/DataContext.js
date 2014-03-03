@@ -21,7 +21,7 @@
         , getAll: function () {
             /// <summary>get all bookmarks sorted by date</summary>
             /// <returns type="Bookmark">all bookmarks sorted by date</returns>
-
+            
             var result = [];
             for (var i = 0; i < localStorage.length; i++) {
                 result.push(youbmark.Bookmark.parse(localStorage.getItem(localStorage.key(i))));
