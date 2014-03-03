@@ -49,12 +49,13 @@ describe("DataLayer", function () {
         });
     });
 
-    it("Clear All Bookmark", function () {
+    //dropboxAPIがlocalStorageに同期用トークンを仕込むのでクリアはいったん作らない。伴い
+    xit("Clear All Bookmark", function () {
         data.clear();
         expect(data.getAll()).toEqual([]);
     });
 
-    it("After Clear, LocalStorage not contains bookmark", function () {
+    xit("After Clear, LocalStorage not contains bookmark", function () {
         bookmark.forEach(function (item) {
             expect(localStorage.getItem(item.url)).toBeNull();
         });
