@@ -19,7 +19,7 @@ describe("DataLayer", function () {
             data.save(item);
         });
 
-        expect(data.getAll()).toEqual(bookmark);
+        expect(data.getAll()).toEqual(bookmark.slice().reverse());
     });
 
     it("After save, LocalStorage contains all bookmark", function () {

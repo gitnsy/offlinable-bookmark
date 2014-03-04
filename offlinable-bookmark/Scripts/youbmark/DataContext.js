@@ -1,6 +1,6 @@
 ﻿var youbmark = youbmark || {};
 (function () {
-    dc = function () { };
+    var dc = function () { };
     dc.prototype = {
         save: function (bookmark) {
             /// <summary>save bookmark to Persistent storage</summary>
@@ -24,9 +24,12 @@
             
             var result = [];
             for (var i = 0; i < localStorage.length; i++) {
-                result.push(youbmark.Bookmark.parse(localStorage.getItem(localStorage.key(i))));
+                var s = youbmark.Bookmark.parse(localStorage.getItem(localStorage.key(i)));
+                if (s !== null && s.url ) {
+                    result.push(s);
+                }
             }
-            return result.sort(function(a,b){return a.createDate - b.createDate;});
+            return result.sort(function(a,b){return b.createDate - a.createDate;});
         }
         , remove: function (url) {
             /// <summary>remove bookmark from Persistent storage</summary>

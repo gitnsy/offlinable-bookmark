@@ -1,6 +1,6 @@
 ﻿var youbmark = youbmark || {};
 (function () {
-    Bookmark = function Bookmark(url, opts) {
+    var Bookmark = function Bookmark(url, opts) {
         /// <summary>Bookmark</summary>
         /// <param name="url" type="String">Bookmarks URL</param>
         /// <param name="opts" type="Object">title,comment,createDate</param>
